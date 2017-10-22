@@ -1,0 +1,18 @@
+{
+  "name": "ethereum-dapps-examples",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "truffle test",
+    "truffle": "truffle"
+  },
+  "keywords": [
+    "Ethereum",
+    "SmartContracts",
+    "DApps"
+  ],
+  "author": "Francesco Strazzullo (francesco.strazzullo86@gmail.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "truffle": "4.0.1"
+  }
+}
