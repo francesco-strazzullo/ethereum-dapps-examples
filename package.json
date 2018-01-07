@@ -2,6 +2,7 @@
   "name": "ethereum-dapps-examples",
   "version": "0.0.1",
   "scripts": {
+    "testrpc": "ganache-cli",
     "test": "truffle test",
     "truffle": "truffle"
   },
@@ -13,6 +14,7 @@
   "author": "Francesco Strazzullo (francesco.strazzullo86@gmail.com)",
   "license": "MIT",
   "devDependencies": {
-    "truffle": "4.0.1"
+    "ganache-cli": "6.0.3",
+    "truffle": "4.0.4"
   }
 }
