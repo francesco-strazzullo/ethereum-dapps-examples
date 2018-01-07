@@ -9,8 +9,6 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
-console.log(__dirname)
-
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 let contract
@@ -38,6 +36,22 @@ app.get('/api/balances', async (req, res) => {
     balances[address] = await getBalance(address)
   }
   res.json(balances)
+})
+
+app.get('/api/start', async (req, res) => {
+  const started = await contract.methods.started().call()
+  if (!started) {
+    await contract.methods.start().send({from: accounts[0]})
+  }
+  res.json('Poll Started')
+})
+
+app.get('/api/stop', async (req, res) => {
+  const started = await contract.methods.started().call()
+  if (started) {
+    contract.methods.stop().send({from: accounts[0]})
+  }
+  res.json('Poll Stopped')
 })
 
 const boot = async () => {
