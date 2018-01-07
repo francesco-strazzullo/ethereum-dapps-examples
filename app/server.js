@@ -6,10 +6,13 @@ const {
 } = require('./ethNetwork')
 
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const path = require('path')
+const ADDRESS_HEADER_NAME = 'X-ETH-ADDRESS'
 
 app.use('/', express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.text())
 
 let contract
 let accounts
@@ -29,6 +32,11 @@ app.get('/api/started', async (req, res) => {
   res.json(started)
 })
 
+app.get('/api/result', async (req, res) => {
+  const result = await contract.methods.result().call()
+  res.json(result)
+})
+
 app.get('/api/balances', async (req, res) => {
   const balances = {}
   for (let index = 0; index < accounts.length; index++) {
@@ -38,20 +46,31 @@ app.get('/api/balances', async (req, res) => {
   res.json(balances)
 })
 
-app.get('/api/start', async (req, res) => {
+app.post('/api/start', async (req, res) => {
   const started = await contract.methods.started().call()
+  const from = req.get(ADDRESS_HEADER_NAME)
   if (!started) {
-    await contract.methods.start().send({from: accounts[0]})
+    await contract.methods.start().send({from})
   }
   res.json('Poll Started')
 })
 
-app.get('/api/stop', async (req, res) => {
+app.post('/api/stop', async (req, res) => {
   const started = await contract.methods.started().call()
+  const from = req.get(ADDRESS_HEADER_NAME)
   if (started) {
-    contract.methods.stop().send({from: accounts[0]})
+    contract.methods.stop().send({from})
   }
   res.json('Poll Stopped')
+})
+
+app.post('/api/vote/', async (req, res) => {
+  const from = req.get(ADDRESS_HEADER_NAME)
+  const started = await contract.methods.started().call()
+  if (started) {
+    contract.methods.vote(req.body === 'true').send({from})
+  }
+  res.json('Vote Casted')
 })
 
 const boot = async () => {
