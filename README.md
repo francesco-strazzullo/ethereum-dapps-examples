@@ -1,5 +1,7 @@
 # ethereum-dapps-examples
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 Example of DApps with Solidity and Truffle
 
 ## Test

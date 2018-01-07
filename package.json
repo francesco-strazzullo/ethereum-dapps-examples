@@ -13,8 +13,19 @@
   ],
   "author": "Francesco Strazzullo (francesco.strazzullo86@gmail.com)",
   "license": "MIT",
+  "standard": {
+    "globals": [
+      "artifacts",
+      "contract",
+      "it",
+      "beforeEach",
+      "assert",
+      "web3"
+    ]
+  },
   "devDependencies": {
     "ganache-cli": "6.0.3",
+    "standard": "10.0.3",
     "truffle": "4.0.4"
   }
 }
