@@ -1,0 +1,158 @@
+{
+	"info": {
+		"name": "Dapps Examples",
+		"_postman_id": "d9e068f9-23a1-b606-edb8-57308a17aa8b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/result",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/result",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"result"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/started",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/started",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"started"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/balances",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/balances",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"balances"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/start",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-ETH-ADDRESS",
+						"value": "0x8143e06eCbfD7618F32C8689fFCab03ce29c9cbc"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/start",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"start"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/stop",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-ETH-ADDRESS",
+						"value": "0x8143e06eCbfD7618F32C8689fFCab03ce29c9cbc"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:3000/api/stop",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"stop"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000/api/vote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-ETH-ADDRESS",
+						"value": "0xef19B002Dc76029fb6913bF55816E520D087Eb8C"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "false"
+				},
+				"url": {
+					"raw": "localhost:3000/api/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"vote"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
