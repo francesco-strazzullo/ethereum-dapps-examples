@@ -1,9 +1,9 @@
-const pollArtifact = require('../build/contracts/Poll.json')
 const {
-    createContract,
     getAccounts,
     getBalance
 } = require('./ethNetwork')
+
+const createPollContract = require('./pollContract')
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -27,16 +27,6 @@ const startServer = app => new Promise((resolve, reject) => {
   })
 })
 
-app.get('/api/started', async (req, res) => {
-  const started = await contract.methods.started().call()
-  res.json(started)
-})
-
-app.get('/api/result', async (req, res) => {
-  const result = await contract.methods.result().call()
-  res.json(result)
-})
-
 app.get('/api/balances', async (req, res) => {
   const balances = {}
   for (let index = 0; index < accounts.length; index++) {
@@ -46,35 +36,46 @@ app.get('/api/balances', async (req, res) => {
   res.json(balances)
 })
 
+app.get('/api/started', async (req, res) => {
+  const started = await contract.isStarted()
+  res.json(started)
+})
+
+app.get('/api/result', async (req, res) => {
+  const result = await contract.getResult()
+  res.json(result)
+})
+
 app.post('/api/start', async (req, res) => {
-  const started = await contract.methods.started().call()
+  const started = await contract.isStarted()
   const from = req.get(ADDRESS_HEADER_NAME)
   if (!started) {
-    await contract.methods.start().send({from})
+    await contract.start(from)
   }
   res.json('Poll Started')
 })
 
 app.post('/api/stop', async (req, res) => {
-  const started = await contract.methods.started().call()
+  const started = await contract.isStarted()
   const from = req.get(ADDRESS_HEADER_NAME)
   if (started) {
-    contract.methods.stop().send({from})
+    await contract.stop(from)
   }
   res.json('Poll Stopped')
 })
 
 app.post('/api/vote/', async (req, res) => {
   const from = req.get(ADDRESS_HEADER_NAME)
-  const started = await contract.methods.started().call()
+  const started = await contract.isStarted()
   if (started) {
-    contract.methods.vote(req.body === 'true').send({from})
+    const value = req.body === 'true'
+    await contract.vote(from, value)
   }
   res.json('Vote Casted')
 })
 
 const boot = async () => {
-  contract = await createContract(pollArtifact)
+  contract = await createPollContract()
   accounts = await getAccounts()
   await startServer(app)
   console.log('Example app listening on port 3000!')
