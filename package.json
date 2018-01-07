@@ -2,6 +2,8 @@
   "name": "ethereum-dapps-examples",
   "version": "0.0.1",
   "scripts": {
+    "deploy-contracts":"truffle migrate --network rpc",
+    "start": "node ./app/server",
     "testrpc": "ganache-cli",
     "test": "truffle test",
     "truffle": "truffle"
