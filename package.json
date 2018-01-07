@@ -27,5 +27,9 @@
     "ganache-cli": "6.0.3",
     "standard": "10.0.3",
     "truffle": "4.0.4"
+  },
+  "dependencies": {
+    "express": "4.16.2",
+    "web3": "1.0.0-beta.27"
   }
 }
