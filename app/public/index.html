@@ -1,5 +1,35 @@
 <html>
     <body>
         <h1>ÐApps Poll system</h1>
+        <script src="index.js" type="module" async defer></script>
+        <button role="refresh">Refresh</button>
+        <h3>Results</h3>
+        <div role="dashboard">
+            <p>Status: <span role="status"></span></p>
+            <p>Result: <span role="result"></span></p>
+        </div>
+        <h3>Users</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody role="balances"></tbody>
+        </table>
+        <template id="balanceRow">
+            <tr>
+                <td role="address"></td>
+                <td role="balance"></td>
+                <td>
+                    <button role="start">Start</button>
+                    <button role="stop">Stop</button>
+                    <button role="yes">Vote Yes</button>
+                    <button role="no">Vote No</button>
+                </td>
+            </li>
+        </template>
     </body>
 </html>
